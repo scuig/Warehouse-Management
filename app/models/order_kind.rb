@@ -1,0 +1,3 @@
+class OrderKind < ActiveRecord::Base
+  has_many :orders
+end

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Installers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Employee key</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @installers.each do |installer| %>
+      <tr>
+        <td><%= installer.employee_key %></td>
+        <td><%= installer.first_name %></td>
+        <td><%= installer.last_name %></td>
+        <td><%= link_to 'Show', installer %></td>
+        <td><%= link_to 'Edit', edit_installer_path(installer) %></td>
+        <td><%= link_to 'Destroy', installer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Installer', new_installer_path %>
