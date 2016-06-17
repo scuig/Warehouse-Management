@@ -1,14 +1,24 @@
 Rails.application.routes.draw do
+  resources :classifications
+  devise_for :users
   resources :activities
   resources :order_kinds
   resources :installers
   resources :locations
-  resources :orders
+  resources :orders do
+    get :autocomplete_location_location_name, :on => :collection
+    get :autocomplete_installer_employee_key, :on => :collection
+    get :autocomplete_classification_name, :on => :collection
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root to: 'application#index'
+
+
+  get '/index' => 'application#index'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

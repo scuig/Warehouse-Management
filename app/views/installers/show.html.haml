@@ -1,0 +1,13 @@
+%p#notice= notice
+%p
+  %strong Employee key:
+  = @installer.employee_key
+%p
+  %strong First name:
+  = @installer.first_name
+%p
+  %strong Last name:
+  = @installer.last_name
+= link_to 'Edit', edit_installer_path(@installer)
+|
+= link_to 'Back', installers_path

@@ -1,0 +1,46 @@
+.right_col{:role => "main"}
+  %div
+    .page-title
+      .title_left
+        %h3 Captura de Órdenes
+
+    .clearfix
+    .row
+  .col-md-12.col-sm-12.col-xs-12
+    .x_panel
+      .x_title
+        %h2
+          Clasificaciones de ordenes
+          %small vizualizando todas
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link
+              %i.fa.fa-chevron-up
+          %li
+            %a.close-link
+              %i.fa.fa-close
+        .clearfix
+      .x_content
+        %h1 Listing classifications
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Name
+              %th Price
+              %th
+              %th
+              %th
+
+          %tbody
+            - @classifications.each do |classification|
+              %tr
+                %td= classification.name
+                %td= classification.price
+                %td= link_to 'Show', classification
+                %td= link_to 'Edit', edit_classification_path(classification)
+                %td= link_to 'Destroy', classification, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+        %br
+
+        = link_to 'New Classification', new_classification_path

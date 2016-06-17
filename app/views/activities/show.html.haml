@@ -1,0 +1,10 @@
+%p#notice= notice
+%p
+  %strong Activity name:
+  = @activity.activity_name
+%p
+  %strong Activity cost:
+  = @activity.activity_cost
+= link_to 'Edit', edit_activity_path(@activity)
+|
+= link_to 'Back', activities_path

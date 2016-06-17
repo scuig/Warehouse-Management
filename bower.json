@@ -1,0 +1,13 @@
+{
+  "name": "claro solutions",
+  "authors": [
+    "Alan Sosa"
+  ],
+  "description": "Claro Solutions Admins Software",
+  "main": "",
+  "license": "",
+  "homepage": "",
+  "dependencies": {
+    "gentelella": "^1.1.0"
+  }
+}

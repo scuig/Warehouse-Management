@@ -1,0 +1,7 @@
+%p#notice= notice
+%p
+  %strong Order kind name:
+  = @order_kind.order_kind_name
+= link_to 'Edit', edit_order_kind_path(@order_kind)
+|
+= link_to 'Back', order_kinds_path

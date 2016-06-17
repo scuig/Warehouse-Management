@@ -1,0 +1,63 @@
+= simple_form_for @order, html: {class: 'form-horizontal form-label-left'} do |f|
+  .form-group
+    = f.label "Número de cuenta", class: 'control-label col-md-3 col-sm-3 col-xs-12'
+    .col-md-9.col-sm-9.col-xs-12
+      = f.input_field :account, class: 'form-control'
+  .form-group
+    = f.label "Número de orden", class: 'control-label col-md-3 col-sm-3 col-xs-12'
+    .col-md-9.col-sm-9.col-xs-12
+      = f.input_field :work_order, as: :string, class: 'form-control', :data => {:inputmask=> "'mask' : '9-9999999999'"} 
+
+  .form-group
+    = f.label "Fecha de llegada", class: 'control-label col-md-3 col-sm-3 col-xs-12'
+    .col-md-9.col-sm-9.col-xs-12
+      = f.input_field :check_in, class: 'form-control'
+
+  .form-group
+    = f.input :installer_id, as: 'hidden'
+    = f.label "Técnico" , class: 'control-label col-md-3 col-sm-3 col-xs-12'
+    .col-md-9.col-sm-9.col-xs-12
+      = f.input_field :installer_employee_key,
+        :url => autocomplete_installer_employee_key_orders_path,
+        :as => :autocomplete,
+        :class => 'form-control col-md-10',
+        :id_element => '#order_installer_id',
+        'data-auto-focus' => true
+      #autocomplete-container[style="position: relative; float: left; width: 400px; margin: 10px;"]
+        .autocomplete-suggestions[style="position: absolute; display: none; max-height: 300px; z-index: 9999;"]
+
+  .form-group
+    = f.input :location_id, as: 'hidden'
+    = f.label "Plaza" , class: 'control-label col-md-3 col-sm-3 col-xs-12'
+    .col-md-9.col-sm-9.col-xs-12
+      = f.input_field :location_location_name,
+        :url => autocomplete_location_location_name_orders_path,
+        :as => :autocomplete,
+        :class => 'form-control col-md-10',
+        :id_element => '#order_location_id',
+        'data-auto-focus' => true
+      #autocomplete-container[style="position: relative; float: left; width: 400px; margin: 10px;"]
+        .autocomplete-suggestions[style="position: absolute; display: none; max-height: 300px; z-index: 9999;"]
+
+  .form-group
+    = f.input :classification_id, as:'hidden'
+    = f.label "Tipo de Servicio" , class: 'control-label col-md-3 col-sm-3 col-xs-12'
+    .col-md-9.col-sm-9.col-xs-12
+      = f.input_field :classification_name,
+        :url => autocomplete_classification_name_orders_path,
+        :as => :autocomplete,
+        :class => 'form-control col-md-10',
+        :id_element => '#order_classification_id',
+        'data-auto-focus' => true
+      #autocomplete-container[style="position: relative; float: left; width: 400px; margin: 10px;"]
+        .autocomplete-suggestions[style="position: absolute; display: none; max-height: 300px; z-index: 9999;"]
+  .ln_solid
+  .form-group
+    #activities_orders
+    = link_to_add_association 'Agregar Servicio', f, :activities_orders
+    = f.simple_fields_for :activities_orders do |activity_order|
+      = render 'activity_order_fields', :f =>  activity_order
+
+  .form-group
+    .col-md-9.col-sm-9.col-xs-12
+      = f.button :submit, "Finalizar captura", :disable_with => 'Espere un momento ...', :class => 'btn btn-success'

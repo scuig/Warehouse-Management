@@ -1,8 +1,23 @@
 class Order < ActiveRecord::Base
   belongs_to :location
-  belongs_to :installer
-  belongs_to :order_kind
+  delegate :location_name, to: :location, prefix: true, :allow_nil => true
 
-  has_many :activity_orders
-  has_many :activities, through: :activity_orders
+  belongs_to :installer
+  delegate :employee_key, to: :installer, prefix: true, :allow_nil => true
+
+  belongs_to :classification
+  delegate :name, to: :classification, prefix: true, :allow_nil => true
+
+  belongs_to :order_kind
+  belongs_to :user
+
+
+  has_many :activities_orders
+  has_many :activities, through: :activities_orders
+
+  accepts_nested_attributes_for :activities_orders,
+          :reject_if => :all_blank,
+          :allow_destroy => true
+ accepts_nested_attributes_for :activities
+
 end

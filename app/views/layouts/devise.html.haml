@@ -1,0 +1,33 @@
+!!!
+%html
+  %head
+    %title Claro Solutions
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+  %body{:style => "background:#F7F7F7;"}
+    .container.body
+      = yield
+      = javascript_include_tag 'application', 'data-turbolinks-track' => true
+      - if notice
+        :javascript
+          $(function(){
+            new PNotify({
+                title: 'Aviso',
+                text: '#{ notice }',
+                hide: false,
+                styling: 'bootstrap3'
+            });
+          });
+
+      - if alert
+        :javascript
+          $(function(){
+            new PNotify({
+                title: 'Alerta',
+                text: '#{ alert}',
+                type: 'error',
+                hide: false,
+                styling: 'bootstrap3'
+            });
+          });

@@ -1,0 +1,7 @@
+.nested-fields.activity-order-fields
+  #activity_from_list
+  .form-inline
+  .tag_from_list style="display: inline;"
+    = f.association :activity, label: "Seleccionar",  label_method: :activity_name, value_method: :id
+    = f.input :quantity
+  = link_to_remove_association "Borrar actividad de orden", f

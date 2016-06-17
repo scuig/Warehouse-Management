@@ -28,6 +28,18 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Unicorn as the app server
 # gem 'unicorn'
+gem "haml-rails", "~> 0.9"
+gem "slim"
+# Gems
+# Simple Forms
+gem 'simple_form'
+gem 'cocoon'
+gem 'devise'
+gem 'pnotify-rails'
+gem 'rails4-autocomplete'
+gem "jquery-ui-rails"
+gem 'bootstrap-sass'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -45,8 +57,6 @@ group :development do
   gem 'spring'
 
 
-  # Gems
-  # Simple Forms
-  gem 'simple_form'
-  gem 'cocoon'
+
+
 end

@@ -1,0 +1,44 @@
+/ page content
+.right_col{:role => "main"}
+  %div
+    .page-title
+      .title_left
+        %h3 Captura de Órdenes
+
+    .clearfix
+    .row
+  .col-md-12.col-sm-12.col-xs-12
+    .x_panel
+      .x_title
+        %h2
+          Ordenes Capturadas
+          %small vizualizando todas
+        %ul.nav.navbar-right.panel_toolbox
+          %li
+            %a.collapse-link
+              %i.fa.fa-chevron-up
+          %li
+            %a.close-link
+              %i.fa.fa-close
+        .clearfix
+      .x_content
+        %p#notice= notice
+        %h1 Listing Orders
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Account
+              %th Work order
+              %th Check in
+              %th{:colspan => "3"}
+          %tbody
+            - @orders.each do |order|
+              %tr
+                %td= order.account
+                %td= order.work_order
+                %td= order.check_in
+                %td= link_to 'Show', order
+                %td= link_to 'Edit', edit_order_path(order)
+                %td= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }
+        %br/
+        = link_to 'Capturar Orden', new_order_path

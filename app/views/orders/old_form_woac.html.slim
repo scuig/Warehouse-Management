@@ -1,0 +1,20 @@
+= simple_form_for @order, html: {class: 'form-horizontal form-label-left input_mask'} do |f|
+    = f.input :account, label: "Número de cuenta"
+    = f.input :work_order, label: "Número de orden", as: :string
+    = f.association :installer, label: 'Técnico', collection: Installer.order(:employee_key), label_method: :employee_key, value_method: :id, prompt: 'Elegir Técnico'
+    = f.input :check_in, label: 'Fecha de llegada'
+    = f.association :location, label: 'Ubicacion', collection: Location.order(:location_name), label_method: :location_name, value_method: :id, prompt: 'Elegir ubicacion'
+    = f.association :order_kind, label: 'Tipo de orden', collection: OrderKind.order(:order_kind_name), label_method: :order_kind_name, value_method: :id, prompt: 'Elegir opcion'
+    = f.association :classification, label: 'Tipo de instalacion', collection: Classification.order(:name), label_method: :name, value_method: :id, prompt: 'Elegir opcion'
+    = f.input :location, :url => autocomplete_location_location_name_orders_path, :as => :autocomplete
+    br/
+    br/
+    #activities_orders
+    = f.simple_fields_for :activities_orders do |activity_order|
+      = render 'activity_order_fields', :f =>  activity_order
+    .links
+      = link_to_add_association 'Agregar Servicio', f, :activities_orders
+
+
+    .actions
+    = f.button :submit, "Finalizar captura", :disable_with => 'Espere un momento ...'

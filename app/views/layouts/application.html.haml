@@ -1,0 +1,36 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Claro
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body.nav-md
+    .container.body
+      = render "partials/sidenav"
+      = render "partials/topnav"
+      = yield
+      = render "partials/footer"
+      = javascript_include_tag 'application', 'data-turbolinks-track' => true
+      - if notice
+        /= content_tag :div, class: "notice_obj", data: {notice: @notice} do
+        :javascript
+          $(function(){
+            new PNotify({
+                title: 'Aviso',
+                text: '#{ notice }',
+                hide: false,
+                styling: 'bootstrap3'
+            });
+          });
+      - if alert
+        :javascript
+          $(function(){
+            new PNotify({
+                title: 'Alerta',
+                text: '#{ alert}',
+                type: 'error',
+                hide: false,
+                styling: 'bootstrap3'
+            });
+          });

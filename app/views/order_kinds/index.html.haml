@@ -1,0 +1,16 @@
+%p#notice= notice
+%h1 Listing Order Kinds
+%table
+  %thead
+    %tr
+      %th Order kind name
+      %th{:colspan => "3"}
+  %tbody
+    - @order_kinds.each do |order_kind|
+      %tr
+        %td= order_kind.order_kind_name
+        %td= link_to 'Show', order_kind
+        %td= link_to 'Edit', edit_order_kind_path(order_kind)
+        %td= link_to 'Destroy', order_kind, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Order kind', new_order_kind_path

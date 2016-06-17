@@ -1,0 +1,23 @@
+= form_for(@installer) do |f|
+  - if @installer.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@installer.errors.count, "error")
+        prohibited this installer from being saved:
+      %ul
+        - @installer.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :employee_key
+    %br/
+    = f.text_field :employee_key
+  .field
+    = f.label :first_name
+    %br/
+    = f.text_field :first_name
+  .field
+    = f.label :last_name
+    %br/
+    = f.text_field :last_name
+  .actions
+    = f.submit
